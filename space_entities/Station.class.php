@@ -6,6 +6,9 @@
 		public function	__construct()	{ return ;}
 		public function	__destruct()	{ return ;}
 
+		/***********************************************************************
+		** Put the Station on the map, avoiding wraping
+		***********************************************************************/
 		public function size($base)
 		{
 			if ($base % 150 != 0 && ($base + 1) % 150 != 0 && ($base + 2) % 150 != 0 && ($base + 3) % 150 != 0)

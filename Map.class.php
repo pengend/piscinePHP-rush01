@@ -29,19 +29,22 @@
 			}
 			return ($this->_map);
 		}
-
+// /*
 		public function place_ship($ship, $base)
 		{
+			print_r($ship);
+			print($ship->size_r());
 			foreach ($ship as $ship)
 			{
-				foreach ($ship['size'] as $key => $value)
+				foreach ($ship->size_r() as $key => $value)
 				{
 					print_r($key + $base);
 					$this->_map[$key + $base] = $ship['name'];
 				}
-				// print_r($value['name']);
+				print_r($value['name']);
 			}
 			return ($this->_map);
 		}
+	// */
 	}
 ?>

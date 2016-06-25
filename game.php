@@ -32,10 +32,7 @@
 			.left			{width: 30vmin; height: 10vmin; background: #2B303B; position: absolute; border: 5px solid silver; margin-left: 1vw; display: none;}
 
 			.coucou			{left: 20px; font-size: 5em; line-height: 10px; position: absolute}
-			.coucou:hover + .left
-			{
-				display: block;
-			}
+			.coucou:hover + .left { display: block; }
 
 			.st_red_0		{background-color: #7F2626;}
 			.st_red_1		{background-color: #FF4C4C;}
@@ -57,14 +54,10 @@
 								echo $value." ";
 					?>
 				</div>
-
 			</div>
 		</div>
+		<!-- <a class="coucou">_<br>_<br>_</a> -->
 
-		<a class="coucou">_<br>_<br>_</a>
-		<div class="left">
-
-		</div>
 
 		<?php
 			echo "<table class='st_table'>";

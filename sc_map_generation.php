@@ -37,8 +37,9 @@
 		** Player_Blue ships
 		*******************************************************************/
 			$space_ships = new Space_ships();
-			$hunter = new Hunter(array('size_x' => '2', 'size_y' => '5'));
+			$hunter = new Hunter(array('name' => 'Big Boat Destructor'));
 			$map_arr = $map->place_ship($hunter, 151);
+			print("HELLO");
 
 
 		/*******************************************************************
