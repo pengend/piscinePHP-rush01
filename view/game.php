@@ -1,28 +1,8 @@
-<?php
-	session_start();
-	include_once('sc_map_generation.php');
-	include_once('sc_roll_dices.php');
-
-	include_once('Map.class.php');
-
-	include_once('space_entities/Obstacles.class.php');
-	include_once('space_entities/Space_entity.class.php');
-	include_once('space_entities/Asteroid.class.php');
-	include_once('space_entities/Station.class.php');
-
-	include_once('space_ships/ISpace_ship.class.php');
-	include_once('space_ships/Space_ships.class.php');
-	include_once('space_ships/Hunter.class.php');
-
-	if (!$_SESSION['map'])
-		$_SESSION['map'] = ft_map_generation();
-?>
-
 <html>
 	<head>
 		<title>GAME</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<link rel="stylesheet" type="text/css" href="style.css" />
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
 		<style>
 			.st_td			{position: relative; border: 1px solid;}
 			.st_table		{border: 1px; width: 85vmin; height: 85vmin; margin-left: auto; margin-right: auto; margin-top: 1vh;}
