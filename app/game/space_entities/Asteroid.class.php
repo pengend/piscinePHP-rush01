@@ -4,7 +4,9 @@ namespace Entities;
 
 class Asteroid implements \Game\IObstacles
 {
-	public function	__construct()	{ return ;}
+	public $color;
+
+	public function	__construct()	{ $this->color = 'grey';return ;}
 	public function	__destruct()	{ return ;}
 
 	/***********************************************************************

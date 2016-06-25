@@ -25,8 +25,7 @@ Class System
 			if (is_object($value)) {
 				$dump .= $value->jsonDump();
 			} else if (is_array($value)) {
-				echo 'test2';
-				$dump .= self::jsonDump($value);
+				$dump .= self::jsonDump($key, $value);
 			} else {
 				$dump .= '"'.$value.'"';
 			}

@@ -8,9 +8,12 @@ Class Game
 
 	public $players = [];
 
-	private function initPlayer($config_player)
-	{
+	public $ships;
 
+	private function initPlayer()
+	{
+		$this->players[0] = new Player;
+		$this->players[1] = new Player;
 	}
 
 	private function getAvailaibleShips($source)
@@ -31,11 +34,7 @@ Class Game
 	{
 		$this->system = $app->system;
 		$this->ships = self::getAvailaibleShips( __DIR__ . '/space_ships');
-	}
-
-	public function dumpShips()
-	{
-		
+        self::initPlayer();
 	}
 
 }

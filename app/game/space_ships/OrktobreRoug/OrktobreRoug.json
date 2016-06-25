@@ -8,6 +8,7 @@
 	"speed": "12",
 	"maneuver": "4",
 	"shield": "0",
+	"color": "white",
 	"weapon": {
 		"0": "NavalHose"
 	}

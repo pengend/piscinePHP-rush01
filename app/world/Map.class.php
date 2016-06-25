@@ -21,13 +21,13 @@ Class Map
 		return ($this->_map);
 	}
 
-	public function add_to_map($arr)
+	public function add_to_map($arr, $object)
 	{
 		$i = 0;
 		while ($i < 15000)
 		{
 			if (!is_null($arr) && array_key_exists($i, $arr))
-				$this->_map[$i] = $arr[$i];
+				$this->_map[$i] = $object->_name;
 			$i++;
 		}
 		return ($this->_map);
@@ -75,10 +75,10 @@ Class Map
 				if ($i < 2)
 				{
 					$to_add = $station->size(rand(0, 14999));
-					$map_arr = $this->add_to_map($to_add);
+					$map_arr = $this->add_to_map($to_add, $station);
 				}
 				$to_add = $astero->size(rand(0, 14999));
-				$map_arr = $this->add_to_map($to_add);
+				$map_arr = $this->add_to_map($to_add, $astero);
 			}
 
 		/*******************************************************************

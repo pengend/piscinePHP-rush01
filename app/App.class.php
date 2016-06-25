@@ -17,6 +17,11 @@ Class App
      */
 	public $map;
 
+    /**
+     * @var Map
+     */
+	public $event;
+
 	/**
 	 * @var Session
 	 */
@@ -33,23 +38,28 @@ Class App
 
 	public function handle()
 	{
-		$this->session = new Session;
-		$this->system = $this->session->get('system') ? $this->session->get('system') : new System($this);
-		$this->game = $this->session->get('game') ? $this->session->get('game') : new Game\Game($this);
-		$this->world = $this->session->get('world') ? $this->session->get('world') : new World\Map($this->gamer->players);
-
+		$this->system = isset($_SESSION['system']) ? unserialize($_SESSION['system']) : new System($this);
+		$this->game = isset($_SESSION['game']) ? unserialize($_SESSION['game']) : new Game\Game($this);
+		$this->world = isset($_SESSION['world']) ? unserialize($_SESSION['world']) : new World\Map($this->gamer->players);
+		$_SESSION['map'] = isset($_SESSION['map']) ? $_SESSION['map'] : $this->world->mapGeneration();
 		$this->event = new Event($this->game, $this->world);
-		$this->session->get('map') ? 0 : $this->session->set('map', $this->world->mapGeneration());
-
-		require $this->system->root.'/view/game.php';
+		if (isset($_POST['action'])) {
+			$this->event->run();
+			self::setSession();
+		} else {
+			require $this->system->root.'/view/game.php';
+		}
+		self::setSession();
 	}
+
 
     /**
      * Response function
      */
-	public function response()
+	public function setSession()
 	{
-
+		$_SESSION['system'] = serialize($this->system);
+		$_SESSION['game'] = serialize($this->game);
+		$_SESSION['world'] = serialize($this->world);
 	}
-
 }

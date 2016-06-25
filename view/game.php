@@ -7,47 +7,35 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
-		<script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  		<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  		<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 		<script type="text/javascript">
+			var players = jQuery.parseJSON('<?= System::jsonArray($this->game->players) ?>');
 			var ships = jQuery.parseJSON('<?= System::jsonArray($this->game->ships) ?>');
-			console.log(ships);
+			var map = jQuery.parseJSON('<?= System::jsonArray($_SESSION['map']) ?>');
 		</script>
 		<style>
-			.st_td			{position: relative; border: 1px solid;}
-			.st_table		{border: 1px; width: 85vmin; height: 85vmin; margin-left: auto; margin-right: auto;}
-			.st_txt			{font-size: 0.2em; text-align: center;}
-			.dice_result	{color: white; font-size: 1.2em; padding-top: 5px}
-
-			.left			{width: 30vmin; height: 10vmin; background: #2B303B; position: absolute; border: 5px solid silver; margin-left: 1vw; display: none;}
-
-			.st_red_0		{background-color: #7F2626;}
-			.st_red_1		{background-color: #FF4C4C;}
-			.Hunter			{background-color: #426FFF;}
+		<?php
+			foreach ($this->game->ships as $key => $value):; ?>
+			.ship-color-<?= $value->get('_name') ?> {background: <?= $value->get('_color') ?>;}
+		<?php endforeach ?>
 		</style>
 	</head>
-
 	<body>
 		<div class="nav_top">
 			<div class="title_div">
-				<form method='POST' action='sc_roll_dices.php'>
-					<input type='number' name='dices' min='1' max='50' value='1'/>
-					<input type='submit' name='submit' value='OK' />
-				</form>
-				<div class="dice_result">
-					<?php
-						if ($_SESSION['dice'])
-							foreach ($_SESSION['dice'] as $value)
-								echo $value." ";
-					?>
-				</div>
+				<a href="#" class="btn btn-danger" onclick="delete_session()">Supprimer la partie</a>
 			</div>
 		</div>
-
 		<div class="select-menu on-left">
-		<div class="select-ship">
+		<div class="select-ship" player-id="<?= $this->game->players[0]->id ?>">
 		</div>
 		</div>
-		<div class="select-menu on-right"></div>
+		<div class="select-menu on-right">
+		<div class="select-ship" player-id="<?= $this->game->players[1]->id ?>">
+		</div>
+		</div>
 
 		<?php
 			echo "<table class='st_table'>";

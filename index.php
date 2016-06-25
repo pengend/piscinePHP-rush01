@@ -21,5 +21,3 @@ if (isset($_GET['old_pos']))
 }
 $app = new App();
 $app->handle();
-
-?>

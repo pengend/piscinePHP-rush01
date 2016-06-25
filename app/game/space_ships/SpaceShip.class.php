@@ -17,6 +17,7 @@ Abstract Class SpaceShip
 	private	$_speed;
 	private	$_maneuver;
 	private	$_shield;
+	private	$_color;
 	private	$_weapon;
 	public $_ship_id;
 
@@ -35,9 +36,9 @@ Abstract Class SpaceShip
 		$this->_shell = $ship->shell;
 		$this->_speed = $ship->speed;
 		$this->_maneuver = $ship->maneuver;
+		$this->_color = $ship->color;
 		$this->_shield = $ship->shield;
 		$this->_weapon = self::initWeapons((array)$ship->weapon);
-		$this->_ship_id = \FileMenager::generateToken(12);
 	}
 
 	public function set($name, $value)
@@ -89,6 +90,7 @@ Abstract Class SpaceShip
 		$dump .= System::jsonDump('maneuver', $this->_maneuver);
 		$dump .= System::jsonDump('shield', $this->_shield);
 		$dump .= System::jsonDump('ship_id', $this->_ship_id);
+		$dump .= System::jsonDump('color', $this->_color);
 		$dump .= System::jsonDump('weapon', $this->_weapon);
 		$dump = rtrim($dump, ',');
 		$dump .= '}';
