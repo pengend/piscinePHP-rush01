@@ -32,16 +32,34 @@ Class Map
 		}
 		return ($this->_map);
 	}
-// /*
+/*
 	public function place_ship($ship, $base)
 	{
 		$size = $ship->get('_size');
-//		print_r($size);
 		foreach ($size as $key => $value)
 			$this->_map[$key + $base] = $ship->get('_name');
 		return ($this->_map);
 	}
-// */
+*/
+
+		public function place_ship($ship, $base)
+		{
+			$size = $ship->get('_size');
+			foreach ($size as $key => $whichone)
+				$this->_map[$key + $base] = $ship->get('_name');
+			return ($this->_map);
+		}
+
+		public function remove_ship($ship, $base)
+		{
+			$size = $ship->get('_size');
+			foreach ($size as $key => $whichone)
+				$this->_map[$key + $base] = "E";
+			return ($this->_map);
+		}
+
+
+
 	public function	mapGeneration()
 	{
 		/*******************************************************************

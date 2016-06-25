@@ -37,7 +37,9 @@ Class App
 		$this->system = $this->session->get('system') ? $this->session->get('system') : new System($this);
 		$this->game = new Game\Game($this);
 		$this->map = new World\Map($this->gamer->players);
-		$this->session->set('map', $this->map->mapGeneration());
+		// $this->session->set('map', $this->map->mapGeneration());
+		if (!$_SESSION['map'])
+			$_SESSION['map'] = $this->map->ft_map_generation();
 		require $this->system->root.'/view/game.php';
 	}
 
