@@ -1,0 +1,10 @@
+<- Map -------------------------------------------------------------------------
+The Map class generates the map.
+
+The class provides the following methods :
+Map   gen_map( );
+Produce a generated map as an array (30*20 sectors)
+
+Map   gen_sectors( $arr );
+Produce each sectors for each part of the map (5*5 inside each sector)
+------------------------------------------------------------------------- Map ->
