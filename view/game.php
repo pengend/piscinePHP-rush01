@@ -3,8 +3,11 @@
 		<title>GAME</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+		<script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
 		<script type="text/javascript">
-			var ships = jQuery.parseJson('<?= json_encode() ?>')
+			var ships = jQuery.parseJSON('<?= System::jsonArray($this->game->ships) ?>');
+			console.log(ships);
 		</script>
 		<style>
 			.st_td			{position: relative; border: 1px solid;}
@@ -41,21 +44,15 @@
 		</div>
 		<!-- <a class="coucou">_<br>_<br>_</a> -->
 
-
+		<div class="select-menu on-left"><div class="select-ship"><div class="ship row"><div class="col-lg-3"></div><div class="col-lg-9"></div></div></div></div>
+		<div class="select-menu on-right"></div>
 		<?php
 			echo "<table class='st_table'>";
 			$i = 0;
 			while ($i < 15000)
 			{
 				echo ($i % 150 == 0 || $i == 0) ? "<tr>" : "";
-				if ($_SESSION['map'][$i] == 'A')
-					echo "<td class='st_td st_none st_txt st_red_0'></td>";
-				else if ($_SESSION['map'][$i] == 'S')
-					echo "<td class='st_td st_none st_txt st_red_1'></td>";
-				else if ($_SESSION['map'][$i] == 'Hunter')
-					echo "<td class='st_td st_none st_txt st_blue_0'></td>";
-				else
-					echo "<td class='st_td st_none st_txt'></td>";
+				echo "<td class='st_td st_none st_txt'></td>";
 				$i++;
 				echo $i % 150 == 0 ? "</tr>" : "";
 			}

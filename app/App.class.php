@@ -34,8 +34,8 @@ Class App
 	public function handle()
 	{
 		$this->session = new Session;
-		$this->system = $this->session->get('system') ? $this->session->get('system') : new System\System($this);
-		$this->gamer = new Game\Game($this);
+		$this->system = $this->session->get('system') ? $this->session->get('system') : new System($this);
+		$this->game = new Game\Game($this);
 		$this->map = new World\Map($this->gamer->players);
 		$this->session->set('map', $this->map->mapGeneration());
 		require $this->system->root.'/view/game.php';

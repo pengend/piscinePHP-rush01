@@ -1,7 +1,5 @@
 <?php
 
-namespace System;
-
 Class System
 {
 	private $app;
@@ -19,14 +17,15 @@ Class System
 		$this->root = __DIR__ .'/../../';
 	}
 
-	public function jsonDump($array)
+	public static function jsonArray($array)
 	{
 		$dump = '{';
 		foreach ($array as $key => $value) {
 			$dump .= '"'.$key.'"'.':';
 			if (is_object($value)) {
 				$dump .= $value->jsonDump();
-			} if (is_array($value)) {
+			} else if (is_array($value)) {
+				echo 'test2';
 				$dump .= self::jsonDump($value);
 			} else {
 				$dump .= '"'.$value.'"';
@@ -36,5 +35,13 @@ Class System
 		$dump = rtrim($dump, ',');
 		$dump .= '}';
 		return $dump;
+	}
+
+	public static function jsonDump($key, $var, $in_array = 0)
+	{
+		$var = is_array($var) ? self::jsonArray($var) : '"'.$var.'"';
+		$dump = '"'.$key.'":'.$var;
+		$dump = !$in_array ? $dump.',' : '{'.$dump.'}';
+		return ($dump);
 	}
 }

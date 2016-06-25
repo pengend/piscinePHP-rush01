@@ -38,3 +38,6 @@ nav					{color: #333333; overflow-x: hidden; overflow-y: hidden;}
 
 .fake_button		{border: none; text-transform: uppercase; background: #888888; color: #FFFFFF; font-size: 1em; letter-spacing: 1px; border-radius: 10px; margin-top: 10px;}
 .fake				{background-color: #2B303B; border: none; text-transform: uppercase; cursor: default; padding: 0.1vh; font-size: 1em; font-weight: bold; letter-spacing: 3px; border-radius: 10px}
+.select-menu 		{border: 1px solid black;position: absolute;width: 300px;height: 1000px;top: 135px;}
+.select-menu.on-left 	{left:90px;}
+.select-menu.on-right 	{right:90px;}
