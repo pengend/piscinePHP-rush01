@@ -1,0 +1,14 @@
+{
+	"type": "1",
+	"name": "OrktobreRoug",
+	"x": "1",
+	"y": "5",
+	"pp": "10",
+	"shell": "6",
+	"speed": "12",
+	"maneuver": "4",
+	"shield": "0",
+	"weapon": {
+		"0": "NavalHose"
+	}
+}

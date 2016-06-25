@@ -2,6 +2,8 @@
 
 namespace Game;
 
+use \Weapon as Weapon;
+
 Abstract Class SpaceShip
 {
 	private	$_type;
@@ -25,6 +27,16 @@ Abstract Class SpaceShip
 		return $this->$name;
 	}
 
+
+	final function initWeapons($list_weapons)
+	{
+		foreach ($list_weapons as $key => $value) {
+			$value = "Weapon\\".$value;
+			$this->_weapon[$value] = new $value();
+		}
+		return $this->_weapon;
+	}
+
 	public function	__construct($kwargs)
 	{
 		$reflect = new \ReflectionClass($kwargs['name']);
@@ -39,9 +51,8 @@ Abstract Class SpaceShip
 		$this->_speed = $ship->speed;
 		$this->_maneuver = $ship->maneuver;
 		$this->_shield = $ship->shield;
-//		$this->_weapon = self::initWeapons((array)$ship->weapon);
+		$this->_weapon = self::initWeapons((array)$ship->weapon);
 		$this->_ship_id = \FileMenager::generateToken(12);
-		return;
 	}
 
 	public function	size($size_x, $size_y)

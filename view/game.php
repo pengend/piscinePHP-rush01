@@ -3,6 +3,9 @@
 		<title>GAME</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<script type="text/javascript">
+			var ships = jQuery.parseJson('<?= json_encode() ?>')
+		</script>
 		<style>
 			.st_td			{position: relative; border: 1px solid;}
 			.st_table		{border: 1px; width: 85vmin; height: 85vmin; margin-left: auto; margin-right: auto; margin-top: 1vh;}

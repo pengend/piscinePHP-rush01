@@ -4,21 +4,17 @@ namespace Game;
 
 Abstract Class Weapon
 {
-	protected $pp;
+	protected $_name;
 
-	protected $att;
+	protected $_power;
 
-	protected $range;
+	protected $_pp;
 
-	public function energyUp($value)
-	{
-		$this->pp = $value;
-	}
+	protected $_shortRange;
 
-	public function energyDown()
-	{
-		$this->pp = 0;
-	}
+	protected $_mediumRange;
+
+	protected $_longRange;
 
 	public function __construct($kwargs)
 	{
@@ -26,8 +22,10 @@ Abstract Class Weapon
 		$weapon_name = $reflect->getShortName();
 		$path = '/'.$weapon_name.'/'.$weapon_name.'.json';
 		$weapon = \FileMenager::decode(__DIR__.$path);
-		$this->pp = 0;
-		$this->att = $weapon->att;
-		$this->range = $weapon->range;
+		$this->_name = $weapon->name;
+		$this->_power = $weapon->power;
+		$this->_shortRange = $weapon->range;
+		$this->_mediumRange = $weapon->medium_range;
+		$this->_longRange = $weapon->long_range;
 	}
 }

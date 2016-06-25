@@ -23,7 +23,7 @@ Class App
 	public $session;
 
 	/**
-	 * @var Session
+	 * @var SessionN
 	 */
 	public $cookies;
 
@@ -35,7 +35,7 @@ Class App
 	{
 		$this->session = new Session;
 		$this->system = $this->session->get('system') ? $this->session->get('system') : new System\System($this);
-//		$this->gamer = $this->session->get('gamer') ? $this->session->get('gamer') : new Unit\Gamer($this);
+		$this->gamer = new Game\Game($this);
 		$this->map = new World\Map($this->gamer->players);
 		$this->session->set('map', $this->map->mapGeneration());
 		require $this->system->root.'/view/game.php';

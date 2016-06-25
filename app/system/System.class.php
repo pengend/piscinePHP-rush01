@@ -18,4 +18,23 @@ Class System
 		$this->app = $app;
 		$this->root = __DIR__ .'/../../';
 	}
+
+	public function jsonDump($array)
+	{
+		$dump = '{';
+		foreach ($array as $key => $value) {
+			$dump .= '"'.$key.'"'.':';
+			if (is_object($value)) {
+				$dump .= $value->jsonDump();
+			} if (is_array($value)) {
+				$dump .= self::jsonDump($value);
+			} else {
+				$dump .= '"'.$value.'"';
+			}
+			$dump .= ',';
+		}
+		$dump = rtrim($dump, ',');
+		$dump .= '}';
+		return $dump;
+	}
 }

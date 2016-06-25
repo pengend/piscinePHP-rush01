@@ -1,0 +1,14 @@
+{
+	"type": "1",
+	"name": "HonorableDuty",
+	"x": "1",
+	"y": "4",
+	"pp": "10",
+	"shell": "5",
+	"speed": "15",
+	"maneuver": "4",
+	"shield": "0",
+	"weapon": {
+		"0": "NavalHose"
+	}
+}
