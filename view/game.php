@@ -1,6 +1,4 @@
 <?php
-	if (!$_SESSION['map'])
-		$_SESSION['map'] = ft_map_generation();
 ?>
 
 <html>
@@ -45,7 +43,10 @@
 			</div>
 		</div>
 
-		<div class="select-menu on-left"><div class="select-ship"><div class="ship row"><div class="col-lg-3"></div><div class="col-lg-9"></div></div></div></div>
+		<div class="select-menu on-left">
+		<div class="select-ship">
+		</div>
+		</div>
 		<div class="select-menu on-right"></div>
 
 		<?php
@@ -53,59 +54,13 @@
 			$i = 0;
 			while ($i < 15000)
 			{
-				echo ($i % 150 == 0 || $i == 0) ? "<tr>" : "";
-				if ($_SESSION['map'][$i] == 'A')
-					echo "<td class='st_td st_none st_txt st_red_0' id='$i' onclick='ft_select(".$i.",\"".$_SESSION['map'][$i]."\")'></td>";
-				else if ($_SESSION['map'][$i] == 'S')
-					echo "<td class='st_td st_none st_txt st_red_1' id='$i' onclick='ft_select(".$i.",\"".$_SESSION['map'][$i]."\")'></td>";
-				else if ($_SESSION['map'][$i] == 'Hunter')
-					echo "<td class='st_td st_none st_txt Hunter' id='$i' onclick='ft_select(".$i.",\"".$_SESSION['map'][$i]."\")'></td>";
-				else
-					echo "<td class='st_td st_none st_txt' id='$i' onclick='ft_select(".$i.",\"".$_SESSION['map'][$i]."\")'></td>";
+				echo ($i % 150 == 0 || $i == 0) ? '<tr>' : '';
+				echo '<td class="st_td st_none st_txt" id="case_'.$i.'"></td>';
 				$i++;
-				echo $i % 150 == 0 ? "</tr>" : "";
+				echo ($i % 150 == 0) ? '</tr>' : '';
 			}
-			echo "</table'>";
+			echo "</table>";
 		?>
+	<script type="text/javascript" src="js/initMap.js"></script>
 	</body>
-	<script>
-		var		old_id = -1;
-		var		old_content = "E";
-
-		function	ft_select(id, content)
-		{
-			if (old_id == -1 && content == "Hunter")
-			{
-				old_id = id;
-				old_content = content;
-			}
-			else if (old_content != "E" && content != "Hunter")
-			{
-				alert("Let's move " + old_content + " from " + old_id + " to " + id);
-				$.ajax({
-					url: 'index.php',
-					type: 'get',
-					data: { "old_pos": old_id, "new_pos": id, "name": old_content},
-					success: function (result)
-					{
-						if (result)
-						{
-							var lines = result.split('\n');
-							for(var i = 0; i < lines.length; i++)
-							{
-								var parts = lines[i].split('|', 2);
-								if (parts[0] || parts[1])
-								{
-									$("#" + parts[0]).attr("class", "st_td st_none st_txt " + parts[1]);
-									$("#" + parts[0]).attr("onclick", "ft_select("+ parts[0] +", '"+ parts[1] +"')");
-								}
-							}
-						}
-					}
-				});
-				old_content = "E";
-				old_id = -1
-			}
-		}
-	</script>
 </html>
