@@ -27,7 +27,7 @@ Class Map
 		while ($i < 15000)
 		{
 			if (!is_null($arr) && array_key_exists($i, $arr))
-				$this->_map[$i] = $object->_name;
+				$this->_map[$i] = $object->_id;
 			$i++;
 		}
 		return ($this->_map);
@@ -46,7 +46,7 @@ Class Map
 		{
 			$size = $ship->get('_size');
 			foreach ($size as $key => $whichone)
-				$this->_map[$key + $base] = $ship->get('_name');
+				$this->_map[$key + $base] = $ship->get('_ship_id');
 			return ($this->_map);
 		}
 

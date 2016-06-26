@@ -38,6 +38,11 @@ Class Event
 		return ;
 	}
 
+	function move_ship($ship_id, $oldpos, $new_pos)
+	{
+		
+	}
+
 	function destroy_session()
 	{
 		session_destroy();

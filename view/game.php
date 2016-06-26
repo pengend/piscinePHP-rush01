@@ -14,6 +14,7 @@
 			var players = jQuery.parseJSON('<?= System::jsonArray($this->game->players) ?>');
 			var ships = jQuery.parseJSON('<?= System::jsonArray($this->game->ships) ?>');
 			var map = jQuery.parseJSON('<?= System::jsonArray($_SESSION['map']) ?>');
+			console.log(map);
 		</script>
 		<style>
 		<?php

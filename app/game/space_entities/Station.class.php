@@ -5,8 +5,14 @@ namespace Entities;
 class Station implements \Game\IObstacles
 {
 	public $color;
+	public $id;
 
-	public function	__construct()	{ $this->color = 'black'; return ;}
+	public function	__construct()
+	{
+		$this->color = 'grey';
+		$this->id = \FileMenager::generateToken(12);
+		return ;
+	}
 	public function	__destruct()	{ return ;}
 
 	/***********************************************************************

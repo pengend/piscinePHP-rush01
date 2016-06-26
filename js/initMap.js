@@ -1,3 +1,20 @@
+Object.size = function(obj) {
+    var size = 0, key;
+    for (key in obj) {
+        if (obj.hasOwnProperty(key)) size++;
+    }
+    return size;
+};
+
+function searchValue(object, key, value)
+{
+	for (var i in object)
+	{
+		if (object[i][key] == value)
+			return i;
+	}
+	return false;
+}
 
 function delete_session()
 {
@@ -8,19 +25,38 @@ function delete_session()
 	});
 }
 
-function printShip(case_on, x, y, shipname)
+function printShip(case_on, x, y, ship)
 {
 	for (var i = x - 1 + case_on; i >= case_on; i--) {
 		for (var j = y - 1; j >= 0; j--) {
-			$('#case_'+(i + 150 * j)).addClass('ship-color-'+shipname);
+			$('#case_'+(i + 150 * j)).addClass('ship-color-'+ship.name);
+			$('#case_'+(i + 150 * j)).attr('ship-id', ship.ship_id);
 		}
 	}
 }
 
+function findShip(players, ship_id)
+{
+	var j;
+
+	for (var i in players)
+	{
+		if ((j = searchValue(players[i].ships, 'ship_id', ship_id)) !== false)
+			return [i, j];
+	}
+	return false;
+}
+
 function printMap(map)
 {
+	var ship;
+	var ret;
+
 	for (var key in map) {
-		$('#case_'+key).addClass('ship-color-'+map[key]);
+		if (map[key] != 'E' && (ret = findShip(players, map[key])) !== false) {
+			$('#case_'+key).addClass('ship-color-'+players[ret[0]].ships[ret[1]].name);
+			$('#case_'+key).attr('ship-id', map[key]);
+		}
 	}
 }
 
@@ -31,8 +67,13 @@ function registerShip(case_on, shipname, player, x, y)
         url: 'index.php',
         data: {"action": "register_ship", "shipname": shipname, "player": player, "case": case_on},
         success: function(data){
+        	var ship;
+
         	players = jQuery.parseJSON(data);
-        	printShip(case_on, x, y, shipname);
+        	player = players[searchValue(players, 'name', player)];
+        	ship = player.ships[Object.size(player.ships) - 1];
+        	console.log(ship);
+        	printShip(case_on, x, y, ship);
         }
 	});
 }
