@@ -44,9 +44,20 @@ Class Map
 
 		public function place_ship($ship, $base)
 		{
+			$nop = 0;
 			$size = $ship->get('_size');
 			foreach ($size as $key => $whichone)
-				$this->_map[$key + $base] = $ship->get('_ship_id');
+			{
+				if ($this->_map[$key + $base] != 'E')
+					$nop = 1;
+			}
+			foreach ($size as $key => $whichone)
+			{
+				if ($nop == 1)
+					$this->_map[$key + $base] = $this->_map[$key + $base];
+				else
+					$this->_map[$key + $base] = $ship->get('_ship_id');
+			}
 			return ($this->_map);
 		}
 
